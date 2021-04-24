@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+import '/styles/app.css';
 
 // Creating Database Connection
 // const db = mysql.createConnection({
