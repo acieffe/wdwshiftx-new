@@ -29,7 +29,7 @@ app.get('/createshifttesttable', (req, res) => {
 });
 
 // Add Shift
-app.get('/addTestShift', (req, res) => {
+app.get('/testShifts/add', (req, res) => {
 	let shift = {
 		shiftName: `EC Future World`,
 		startTime: `2021-04-26 11:30:00`,
@@ -52,9 +52,13 @@ app.get('/addTestShift', (req, res) => {
 app.get('/getTestShifts', (req, res) => {
 	let sql = `SELECT * FROM testShifts`;
 	let query = db.query(sql, (err, results) => {
-		if (err) throw err;
-		console.log(results);
-		res.send('Shifts fetched');
+		if (err) {
+			return res.send(err);
+		} else {
+			return res.json({
+				data: results,
+			});
+		}
 	});
 });
 
@@ -69,7 +73,6 @@ app.get('/getTestShift/:id', (req, res) => {
 });
 
 // Update Shift by id
-
 // %%%% Need to Fix "" '' and `` problems %%%%
 app.get('/updateTestShift/:id', (req, res) => {
 	let shiftName = `HS Hollywood`;
